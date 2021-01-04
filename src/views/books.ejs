@@ -104,6 +104,8 @@
                   <h4><span class="label label-default"><%=books[j].author%></span></h4><h4>
                   <small style="font-family:courier,'new courier';" class="text-muted"><%=books[j].genre%> 
                     <a href="/books/<%=books[j]._id%>" class="text-muted">Read More</a></small>
+                    <a  href="/books/<%=books[j]._id%>/edit?_method=GET" class="text-muted" style="color:darkgreen">Edit </a></small>
+                    <a  href="/books/<%=books[j]._id%>?_method=DELETE"" class="text-muted" style="color: red;">Delete </a></small>
                   </h4></div>
                 <div class="col-xs-3"></div>
               </div>
@@ -117,8 +119,7 @@
           
           
           <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
-        
-          
+
         </div>
       </div>
                                                                                        

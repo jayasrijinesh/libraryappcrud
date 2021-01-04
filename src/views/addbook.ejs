@@ -14,7 +14,7 @@
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
   <link href="/css/styles.css" rel="stylesheet">
-  <script src="../../public/css/validate.js"></script>
+
 </head>
 
 <body>
@@ -99,20 +99,21 @@
               <hr>
               <div >
                 <!-- <form class="loginform" action="/books/Success" method="GET"> -->
-                  <form class="loginform" action="/books/Success" method="POST" enctype="multipart/form-data" >
+                  <form class="addbookform" action="/books" method="POST"  >
+                    <!-- <form class="addbookform" action="/books/added" method="GET" enctype="multipart/form-data" ></form> -->
                   <label> Book Name : </label>
-                  <input type="text" name="BookName" placeholder="Book Name">
+                  <input type="text" name="BookName" id="BookName"   placeholder="Book Name">
                   <br>
                   <label>Author Name : </label>
-                  <input type="text" name="AuthorName" placeholder="Author Name">
+                  <input type="text" name="AuthorName" id="AuthorName"  placeholder="Author Name">
                   <br>
                   <label>Genre : </label>
-                  <input type="text" name="Genre" placeholder="Genre">
+                  <input type="text" name="Genre" id="Genre" placeholder="Genre">
                   <br>
                   <label>Sample Image : </label>
-                  <input type="file" name="imgUpload">
+                  <input type="file" name="imgUpload" id="imgUpload">
                   <br>
-                  <button type="submit"  >Submit</button>
+                  <button type="submit" id="addBook"  >Submit</button>
                 </form>
               </div>
               <!--/Add New Book-->
@@ -176,6 +177,7 @@
     <!-- script references -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/validate.js"></script>
 </body>
 
 </html>

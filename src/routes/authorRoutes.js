@@ -1,69 +1,39 @@
-const { render } = require('ejs');
-const express = require('express');
-const authorsRouter = express.Router();
+const express = require("express");
+const router = express.Router();
 
-
-var authors = [
-    {
-        name: 'Max Brallier',//'The Last Kids on Earth',
-        author: '',
-        genre: 'Kids',
-        img: 'Max Brallier.jpg'
-
-    },
-    {
-        name: 'Barton Seavor', //'National Geographic Kids Cookbook',
-        author: '',
-        genre: 'Kids',
-        img: 'Barton Seaver.jpg'
-
+const authorControllr = require("../controllers/author_Controller");
+router.use(function (req, res, next) {
+    // this middleware will call for each requested
+    // and we checked for the requested query properties
+    // if _method was existed
+    // then we know, clients need to call DELETE request instead
+    if (req.query._method == 'DELETE') {
+        // change the original METHOD
+        // into DELETE method
+        req.method = 'DELETE';
+        // and set requested url to /user/12
+        req.url = req.path;
     }
-]
-authorsRouter.get('/', function (req, res) {
-
-    res.render("authors",
-        {
-            title: 'Authors',
-            nav: [{ name: 'Books', link: '/books' }, { name: 'Authors', link: '/authors' }, { name: 'Add Author', link: '/authors/add'}],
-            authors
-
-        });
-
-
+    else if (req.query._method == 'GET') {
+        // change the original METHOD
+        // into GET method
+        req.method = 'GET';
+        // and set requested url to /user/12
+        req.url = req.path;
+    }
+    next();
 });
-
-authorsRouter.get('/add', function (req, res) {
-
-    res.render("addauthor",
-        {
-            title: 'Add New Author',
-            nav: [{ name: 'Go Back', link: '../authors' }]
-        });
-});
-
-
-authorsRouter.get('/:id', function (req, res) {
-    var id = req.params.id
-    res.render("author",
-        {
-            title: 'Author',
-            nav: [{ name: 'Books', link: '/books' }, { name: 'Authors', link: '/authors' }],
-            author: author[id]
-        });
-});
-
-authorsRouter.post('/Success',function (req,res){
-
-    res.render("authors",
-        {
-            title: 'Authors',
-            nav: [{ name: 'Books', link: '/books' }, { name: 'Authors', link: '/authors' }, { name: 'Add Author', link: '/authors/add'}],
-            authors
-
-        });
-
-});
+///////////////////////
+//  Set author Routes
+///////////////////////
+router.get("/", authorControllr.findAll);
+router.get("/add", authorControllr.renderAdd);
+router.post("/", authorControllr.create);
+router.get("/:id/edit", authorControllr.renderEdit);
+router.post("/:id", authorControllr.update);
+router.get("/:id", authorControllr.findOne);
+router.delete("/:id", authorControllr.delete);
 
 
-module.exports= authorsRouter;
+module.exports = router;
 
