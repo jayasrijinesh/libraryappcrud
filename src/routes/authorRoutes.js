@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const authorControllr = require("../controllers/author_Controller");
+const authorControllr = require("../controllers/Author_Controller");
 router.use(function (req, res, next) {
     // this middleware will call for each requested
     // and we checked for the requested query properties
